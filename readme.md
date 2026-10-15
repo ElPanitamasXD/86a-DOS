@@ -1,91 +1,193 @@
+# 86a-DOS
 
-<h1 align="center">86a-DOS</h1> 
-
-<p align="center"> 
-  <a href="https://nasm.us/pub/nasm/releasebuilds/">[ DESCARGAR NASM ]</a> 
-  <span> &nbsp; ─── &nbsp; </span> 
-  <a href="https://www.qemu.org/download/">[ DESCARGAR QEMU ]</a> 
+<p align="center">
+  <img src="https://img.shields.io/badge/86a--DOS-Version%2011.0-black?style=for-the-badge" alt="86a-DOS Version 11.0">
+  <img src="https://img.shields.io/badge/Architecture-x86%2016--bit-blue?style=for-the-badge" alt="x86 16-bit">
+  <img src="https://img.shields.io/badge/Language-Assembly-orange?style=for-the-badge" alt="Assembly">
 </p>
 
-### ╋━ [RAMA DEFINITIVA: EDICIÓN DOS] | [VERSIÓN 11.0] | [DESARROLLADOR: ElPanitaXD] ━╋ 
-
-#### ¿Qué es 86a-DOS?
-**86a-DOS** es un sistema operativo independiente creado por **ElPanitaXD**. Está escrito 100% en lenguaje ensamblador (Assembly). Ha superado la restricción básica de los 512 bytes mediante la implementación de una **arquitectura de cargador de arranque de dos etapas (Etapa 1: Registro de arranque principal [MBR] y Etapa 2: Núcleo del sistema operativo [Kernel])**, lo que permite características ilimitadas y escalabilidad de memoria.
-
----
-
-### ⓘ REQUISITOS DE HARDWARE
-* **`[+] CPU:`** Cualquier procesador x86 de 32 o 64 bits (Intel/AMD).
-* **`[+] RAM:`** **1 Kilobyte de memoria base**.
-* **`[+] UNIDAD:`** 1 disquete virtual (el cargador de arranque de la Etapa 1 lee los sectores del Kernel de la Etapa 2).
-* **`[+] PRIVILEGIOS:`** Usuario estándar (no requiere permisos de administrador).
-* **`[+] PALETA:`** Fondo negro, color de tipografía personalizable y un encabezado superior doble de color amarillo autoalineado.
-* **`[+] TECLADO:`** Capa de mapeo de traducción localizada para la distribución de teclado latinoamericana/española.
+<p align="center">
+  <b>Simple. Fast. Beautiful. Yours.</b>
+  <br>
+  Un sistema operativo independiente
+</p>
 
 ---
 
-### >_ COMANDOS DE OPERADOR (EDICIÓN DE MEDIO NIVEL)
-Escribe el comando completo en el indicador `vtx> ` y presiona **ENTER** para ejecutar:
+### ╋━ 86a-DOS | MICRO86 COMPACT | EDICION : DOS ━╋
 
-| COMANDO | ACCIÓN DEL MICROPROCESADOR |
-| :--- | :--- |
-| **`help`** | Muestra la lista de comandos autorizados. |
-| **`echo`** | Escribe `echo ` seguido de tu mensaje y la CPU devolverá una repetición de texto limpia. |
-| **`game`** | Cortafuegos matemático avanzado (suma/resta aleatoria de 1 a 2 dígitos). |
-| **`cls`** | Limpia la consola y vuelve a alinear el cursor en la columna 0/fila 2, preservando el encabezado. |
-| **`color`** | Escribe `color ` seguido de `1` (azul), `2` (verde), `3` (cian), `4` (rojo) o `5` (blanco) para cambiar dinámicamente la tipografía de toda la terminal. |
-| **`info`** | Muestra un logotipo en arte ASCII personalizado de alta resolución de 1K-DOS y los detalles del desarrollador. |
-| **`time`** | Consulta el chip RTC (reloj en tiempo real) de la placa base para mostrar la hora del sistema (`HH:MM:SS`). |
-| **`date`** | Consulta los registros del calendario RTC de la placa base para mostrar la fecha (`DD/MM/AAAA`). |
-| **`shutdown`**| Se conecta a la interfaz APM (gestión avanzada de energía) del BIOS para apagar QEMU de forma segura. |
-| **`rb`** | Fuerza un reinicio físico del sistema del BIOS virtual de QEMU. |
+## ¿Qué es 86a-DOS?
 
-#### * REGLAS DEL JUEGO (BLOQUEO MATEMÁTICO):
-Al ejecutar `game`, la CPU lee el reloj interno del sistema para generar una ecuación aleatoria *(por ejemplo, 5 + 5 =)*.
-1. Escribe tu respuesta (admite números de varios dígitos como el 10).
-2. Presiona **ENTER** para validar.
-3. **Resultado:** Muestra un mensaje estilizado `[OK] (*^_^*)` en verde fósforo o un `[ERR] (x_x)` en rojo fuego junto con un pitido físico del hardware de la placa base (`BEEP`).
+**86a-DOS** es un sistema operativo experimental desarrollado por **ElPanitaXD**, escrito principalmente en ensamblador x86 de 16 bits.
+
+El proyecto incluye un cargador de arranque propio, un kernel y una interfaz gráfica para facilitar la exploracion.
+
+## Características
+
+- Sistema operativo experimental de 16 bits.
+- Kernel desarrollado en ensamblador NASM.
+- Arranque mediante un bootloader propio.
+- Interfaz gráfica inspirada en Macintosh System 1.
+- Terminal con comandos integrados.
+- Gestión básica de teclado y mouse mediante servicios BIOS.
+- Aplicaciones y juegos incluidos.
+- Imagen de disco `86a_floppy.img`.
+- Ejecución y compilación automatizadas mediante `Arrancar_Micro86.bat`.
+
+## Cómo ejecutar 86a-DOS
+
+No necesitás escribir manualmente los comandos de compilación.
+
+### Método rápido
+
+1. Descargá o cloná este repositorio.
+2. Comprobá que los archivos del proyecto estén en la misma carpeta y que NASM y QEMU estén instalados y disponibles para el script.
+3. Abrir el **`Arrancar_Micro86.bat`**.
+4. Esperá a que se ensamble el kernel, se genere la imagen de disco y se abra QEMU.
+
+El archivo por lotes automatiza el proceso de compilación y arranque.
+
+```text
+86a-DOS/
+├── Arrancar_Micro86.bat
+├── boot.asm
+├── kernel.asm
+├── boot.bin
+├── kernel.bin
+└── 86a_floppy.img
+```
+
+Los archivos `.bin` y la imagen `.img` pueden generarse automáticamente durante el proceso, según el contenido del script.
+
+### Requisitos
+
+- **Sistema anfitrión:** Windows.
+- **NASM:** ensamblador utilizado para compilar los archivos `.asm`.
+- **QEMU:** emulador de hardware para ejecutar el sistema.
+- **Arranque:** imagen de disco generada por el script.
+
+Descargas oficiales:
+
+- [NASM](https://www.nasm.us/)
+- [QEMU](https://www.qemu.org/download/)
+
+> **Importante:** si el script no encuentra NASM o QEMU, revisá sus rutas de instalación y la configuración de `Arrancar_Micro86.bat`.
+
+## Comandos de la terminal
+
+Escribí el comando en la terminal y presioná **ENTER**.
+
+| Comando | Función |
+|---|---|
+| `help` | Muestra la ayuda y los comandos disponibles. |
+| `ver` | Muestra la versión del sistema. |
+| `about` | Información sobre 86a-DOS. |
+| `info` | Muestra información del sistema. |
+| `mem` | Muestra información básica de memoria. |
+| `cls` | Limpia y reconstruye la pantalla del sistema. |
+| `clear` | Hace lo mismo que `cls`. |
+| `echo texto` | Imprime un mensaje. |
+| `color` | Permite cambiar el color de la terminal, si está habilitado. |
+| `prompt texto` | Personaliza el indicador de comandos. |
+| `time` | Muestra la hora del reloj BIOS. |
+| `date` | Muestra la fecha del reloj BIOS. |
+| `calc 2+2` | Realiza cálculos básicos. |
+| `beep` | Emite un pitido cuando el entorno lo permite. |
+| `dir` | Muestra el directorio virtual. |
+| `type archivo` | Muestra el contenido de un archivo virtual. |
+| `write` | Abre la función de escritura disponible en esta versión. |
+| `del` | Ejecuta la función de eliminación disponible en esta versión. |
+| `game` | Inicia el juego matemático. |
+| `guess` | Juego de adivinar un número. |
+| `react` | Juego de reflejos. |
+| `finder` | Abre el explorador de archivos integrado. |
+| `paint` | Abre la aplicación de dibujo. |
+| `clock` | Abre la aplicación del reloj. |
+| `notepad` | Abre el bloc de notas integrado. |
+| `reboot` | Reinicia el sistema, si el entorno lo permite. |
+| `shutdown` | Intenta apagar el sistema mediante los servicios de energía disponibles. |
+
+*La disponibilidad y el comportamiento exacto de los comandos dependen de la versión del kernel incluida en el repositorio.*
+
+## Aplicaciones
+
+### Finder
+
+Explorador básico para consultar los archivos virtuales del sistema.
+
+### Paint
+
+Aplicación de dibujo con una interfaz gráfica monocromática.
+
+**Controles:**
+
+| Tecla | Acción |
+|---|---|
+| `W` | Mover hacia arriba. |
+| `A` | Mover hacia la izquierda. |
+| `S` | Mover hacia abajo. |
+| `D` | Mover hacia la derecha. |
+| `ENTER` | Dibujar en la posición actual. |
+| `ESC` | Cerrar Paint. |
+
+### Clock
+
+Aplicación gráfica para consultar la fecha y la hora.
+
+### Notepad
+
+Aplicación básica para visualizar texto.
+
+## Juegos
+
+- **Game:** pequeños ejercicios matemáticos.
+- **Guess:** intenta adivinar un número dentro del rango indicado.
+- **React:** poné a prueba tus reflejos y reaccioná cuando aparezca la señal.
+
+## La filosofía de Micro86 Compact
+
+Micro86 Compact es el concepto de computadora física pensado para ejecutar 86a-DOS.
+
+Su diseño está inspirado en la estética de los Macintosh originales:
+
+- Carcasa compacta color beige.
+- Pantalla integrada.
+- Teclado y mouse.
+- Interfaz gráfica monocromática.
+- Diseño industrial retro.
+
+La computadora física es un proyecto complementario: **QEMU permite desarrollar y probar el sistema sin necesidad de construir primero el hardware**.
+
+## Solución de problemas
+
+**QEMU muestra `Boot failed`.**
+
+Comprobá que la imagen de disco se haya generado correctamente y que el bootloader esté leyendo el kernel desde los sectores esperados.
+
+**NASM no se encuentra.**
+
+Instalá NASM y revisá que `Arrancar_Micro86.bat` apunte a su ubicación correcta.
+
+**QEMU no se abre.**
+
+Comprobá la instalación de QEMU y la ruta al ejecutable `qemu-system-x86_64.exe`.
+
+**La pantalla queda negra.**
+
+Revisá los errores de compilación y el proceso de carga del kernel antes de cambiar el código de la interfaz.
+
+## Créditos
+
+- **Desarrollador:** ElPanitaXD.
+- **Proyecto:** 86a-DOS.
+- **Computadora conceptual:** Micro86 Compact.
+- **Lenguaje:** ensamblador x86 mediante NASM.
 
 ---
 
-### </> OPCIÓN B: GUÍA DE EJECUCIÓN LOCAL (USANDO CMD Y POWERSHELL)
-*Para compilar la arquitectura multiarchivo sin que se corrompa directamente desde tu máquina:*
-
-* **PASO 1:** Coloca tus archivos `boot.asm` y `kernel.asm` directamente en tu Escritorio de Windows.
-* **PASO 2:** Abre el Símbolo del sistema de Windows (`cmd`) y navega hasta tu Escritorio ejecutando:
-```bash
-cd %userprofile%\Desktop
-```
-* **PASO 3: COMPILAR ETAPA 1 (CARGADOR DE ARRANQUE)**
-Ejecuta el siguiente comando para generar el sector MBR de 512 bytes:
-```bash
-"C:\Users\TU_USUARIO\AppData\Local\bin\NASM\nasm.exe" -f bin boot.asm -o boot.bin
-```
-* **PASO 4: COMPILAR ETAPA 2 (KERNEL DE 1K-DOS)**
-Ejecuta el siguiente comando para ensamblar el núcleo del sistema de nivel medio sin restricciones:
-```bash
-"C:\Users\TU_USUARIO\AppData\Local\bin\NASM\nasm.exe" -f bin kernel.asm -o bootloader.bin
-```
-* **PASO 5: FUSIÓN BINARIA (GENERACIÓN DE IMAGEN)**
-Ejecuta este comando de PowerShell dentro del CMD para unir ambos archivos uno al lado del otro en una imagen de disco cruda sin perder bytes:
-```bash
-powershell -Command "[System.IO.File]::WriteAllBytes('86a_floppy.img', [System.IO.File]::ReadAllBytes('boot.bin') + [System.IO.File]::ReadAllBytes('bootloader.bin'))"
-```
-* **PASO 6: ARRANCAR 86a-DOS EN QEMU**
-Enciende la máquina virtual x86 utilizando los siguientes parámetros:
-```bash
-"C:\msys64\ucrt64\bin\qemu-system-x86_64.exe" -drive format=raw,file=86a_floppy.img,if=floppy
-```
-
----
-
-### ⎙ CRÉDITOS DEL SISTEMA
-* Código fuente e infraestructura del sistema operativo de la Etapa 2 diseñados completamente en puro código ensamblador x86 por **ElPanitaXD**.
-* Respaldado de forma segura en GitHub contra actualizaciones inesperadas de Windows o corrupciones del contexto del sistema.
-
-#### Demostración del sistema operativo:
-<img width="800" height="449" alt="demostration" src="https://github.com/user-attachments/assets/a3d1ab8f-8260-4c8f-8b88-c5b9f3b36cc3" />
-
-
-
+<p align="center">
+  <b>86a-DOS</b>
+  <br>
+  Simple. Fast. Beautiful. Yours.
+</p>
 
